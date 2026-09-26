@@ -1,0 +1,32 @@
+#1. Veri Yükleme 
+veri <- read.csv("features_fault_named.csv")
+
+#2. Shapiro-Wilk Normallik Testi
+# İlk 5000 satır makinenin en sağlıklı, ilk çalıştığı anlardır.
+shapiro.test(veri$B1_rms[1:5000])
+
+#3. Sağlam Rulman Q-Q Plot Grafiği ve Kaydı
+png("saglam_rulman_qq.png", width = 800, height = 600)
+qqnorm(veri$B1_rms[1:5000], main = "B1 RMS Normallik Grafigi (Q-Q Plot)")
+qqline(veri$B1_rms[1:5000], col = "red", lwd = 2)
+dev.off()
+
+#4. Bozuk Rulman Q-Q Plot Grafiği ve Kaydı
+# DÜZELTME: Aynı dosyanın son 5000 satırını (yani makinenin bozulduğu anları) aldık.
+son_satirlar <- (nrow(veri) - 4999):nrow(veri)
+png("bozuk_rulman_qq.png", width = 800, height = 600)
+qqnorm(veri$B1_rms[son_satirlar], main = "Bozuk Rulman RMS Q-Q Plot", col = "blue")
+qqline(veri$B1_rms[son_satirlar], col = "red", lwd=2)
+dev.off()
+
+#5. Zamana Bağlı Doğrusal Regresyon Modeli
+veri$zaman <- 1:nrow(veri)
+model <- lm(B1_rms ~ zaman, data = veri)
+summary(model)
+
+#6. Zaman Serisi ve Regresyon Trend Grafiği
+indeks <- seq(1, nrow(veri), by = 50)
+png("regresyon_trendi.png", width = 800, height = 600)
+plot(veri$zaman[indeks], veri$B1_rms[indeks], type = "l", col = "darkgrey", xlab = "Zaman (Adim)", ylab = "Titresim Siddeti (B1 RMS)", main = "Rulman Zaman Serisi ve Regresyon Trendi")
+abline(model, col = "red", lwd=2)
+dev.off()
