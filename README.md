@@ -9,7 +9,7 @@ Bu çalışmada, endüstriyel sistemlerde önemli bir rol oynayan rulmanların i
 * İstatistiksel Karşılaştırmalar Sunmak: Sağlam ve arızalı olduğu bilinen rulmanların titreşim karakteristiklerini RMS, normallik incelemesi ve doğrusal regresyon gibi yaklaşımlar üzerinden istatistiksel bir çerçevede incelemek.
 
 - Veri Seti Kaynağı
-Bu projede, endüstriyel rulmanların titreşim özelliklerini incelemek amacıyla Kaggle platformunda açık kaynak olarak sunulan titreşim veri seti (NASA Bearing Dataset) kullanılmıştır. Analizler, bu veri seti içindeki ham ivmeölçer sinyalleri üzerinden gerçekleştirilmiştir.
+Bu projede, endüstriyel rulmanların titreşim özelliklerini incelemek amacıyla Kaggle platformunda açık kaynak olarak sunulan titreşim veri seti (NASA Bearing Dataset) kullanılmıştır. Analizler, bu veri seti içindeki işlenmiş ivmeölçer sinyalleri üzerinden gerçekleştirilmiştir.
 
 - Kullanılan Yöntemler ve Araçlar
 Proje kapsamında veri işleme ve modelleme süreçleri tamamen R Dili kullanılarak RStudio ortamında yürütülmüştür. Temel analiz adımları şu şekildedir:
