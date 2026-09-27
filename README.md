@@ -1,29 +1,42 @@
-# Kestirimci Bakım: İstatistiksel Rulman Titreşim Analizi
+# NASA Rulman Verisinde İstatistiksel RMS Trend Analizi
 
 ## Proje Amacı
-Bu proje, endüstriyel sistemlerde kritik bir öneme sahip olan rulmanların (bearing) sağlık durumlarını istatistiksel yöntemlerle analiz etmeyi amaçlamaktadır. NASA Bearing Dataset kullanılarak, sağlam ve arızalı rulmanlara ait titreşim verileri incelenmiş ve zaman içindeki bozulma eğilimleri modellenmiştir.
+
+Bu proje, NASA Bearing Dataset içindeki sağlam ve arızalı rulmanlara ait titreşim verilerini istatistiksel yöntemlerle incelemeyi amaçlamaktadır. Analizde `B1__rms` (1. rulmanın RMS değeri) değişkeni kullanılarak dağılımlar görselleştirilmiş ve arızalı rulman verisindeki RMS değerinin zaman içindeki eğilimi doğrusal regresyonla incelenmiştir.
+
+Bu çalışma, rulman verisi üzerinde yapılan bir istatistiksel analiz örneğidir. Mevcut analiz tek başına gelecekteki arızaları veya bakım zamanını tahmin etmez.
 
 ## Veri Seti ve Ön İşleme
-* **Veri Kaynağı:** NASA Bearing Dataset 
-* **Özellikler:** "İşlenmiş titreşim özellikleri" kullanılmıştır. Analiz, `B1__rms` (1. Rulman RMS - Root Mean Square değeri) değişkeni üzerinden yürütülmüştür.
-* **Büyük Veri (Big Data) Optimizasyonu:** Sağlam rulman veri seti yüz binlerce satırdan oluştuğu için, istatistiksel testlerin (Shapiro-Wilk) sistem sınırlarını (N=5000) aşmaması ve bellek optimizasyonu sağlamak adına veriden rastgele örneklem (random sampling) çekilerek hesaplama yapılmıştır.
+
+- **Veri kaynağı:** NASA Bearing Dataset.
+- **Kullanılan değişken:** `B1__rms` (1. rulmanın RMS değeri).
+- **Girdi dosyaları:** Kodun çalışması için `features_good_named.csv` ve `features_fault_named.csv` dosyaları R betiğiyle aynı dizinde bulunmalıdır. Veri dosyaları depoda yer almıyorsa, bu dosyaların hangi kaynaktan ve hangi adımlarla elde edildiği ayrıca açıklanmalıdır.
+- **Örnekleme:** Sağlam rulman verisinin normallik testi için 5.000 gözlem rastgele seçilmiştir. Rastgele örneklemin tekrarlanabilir olması için analiz öncesinde sabit bir tohum değeri belirlenmesi önerilir.
 
 ## Metodoloji ve İstatistiksel Analiz
-1. **Dağılım ve Normallik Analizi:** 
-   * Sağlam ve bozuk rulman verilerinin dağılımlarını karşılaştırmak için **Shapiro-Wilk testi** ve **Q-Q Plot** grafikleri kullanılmıştır.
-   * Sağlam rulman verisinin beklenen dağılımı sergilediği, bozuk rulman verisinin ise yapısal aşınmalar sebebiyle ideal dağılımdan saptığı görselleştirilmiştir.
 
-2. **Doğrusal Regresyon (Linear Regression) ile Trend Modelleme:** 
-   * Bozuk rulmanın zaman içerisindeki titreşim şiddeti değişimi modellenmiştir. 
-   * Analiz sonucunda zaman ile RMS değeri arasında istatistiksel olarak son derece anlamlı (p < 2e-16) ve pozitif yönlü bir bozulma trendi tespit edilmiştir.
+### 1. Dağılımın incelenmesi
 
-## Proje Çıktıları ve Görseller
-Proje sonucunda elde edilen ve repoda yer alan grafikler:
-* `saglam_rulman_qq.png`: Sağlam rulmanın normallik varsayımı.
-* `bozuk_rulman_qq.png`: Bozuk rulmanın dağılım sapması.
-* `regresyon_trendi.png`: Zaman serisi üzerinde bozulma eğilimini gösteren regresyon doğrusu.
+Sağlam ve arızalı rulmanların `B1__rms` değerleri Q-Q grafikleriyle görselleştirilmiş; sağlam rulman verisinden seçilen 5.000 gözlem üzerinde Shapiro-Wilk testi uygulanmıştır.
+
+Shapiro-Wilk testi, verinin normal dağılımla uyumunu değerlendirmek için kullanılmıştır. Büyük örneklemlerde küçük sapmaların da istatistiksel olarak anlamlı çıkabileceği göz önünde bulundurulmalı; sonuçlar Q-Q grafikleriyle birlikte yorumlanmalıdır. Mevcut analizde Q-Q grafikleri tüm veri üzerinden çizilirken normallik testi sağlam veriden alınan rastgele örneklem üzerinde yapılmıştır.
+
+### 2. Arızalı rulman verisinde RMS eğilimi
+
+Arızalı rulman verisindeki `B1__rms` değerinin satır sırasına göre değişimi doğrusal regresyonla incelenmiştir. Modelde satır sırası zaman göstergesi olarak kullanılmıştır.
+
+Analiz çıktısında zaman göstergesi ile RMS değeri arasında pozitif yönlü ve istatistiksel olarak anlamlı bir ilişki raporlanmıştır (`p < 2e-16`). Bu sonuç, incelenen veri içindeki doğrusal eğilimi gösterir; tek başına gelecekteki arıza zamanını veya bakım ihtiyacını tahmin ettiği anlamına gelmez. Ölçümlerin zaman sırasına bağlı olabileceği için regresyon sonuçları bu sınırlama dikkate alınarak yorumlanmalıdır.
+
+## Proje Çıktıları
+
+Depoda bulunan grafikler:
+
+- `saglam_rulman_qq.png`: Sağlam rulman RMS değerlerinin Q-Q grafiği.
+- `bozuk_rulman_qq.png`: Arızalı rulman RMS değerlerinin Q-Q grafiği.
+- `regresyon_trendi.png`: Arızalı rulman RMS değerlerinin satır sırasına göre değişimi ve doğrusal regresyon çizgisi.
 
 ## Kullanılan Teknolojiler
-* **Dil:** R
-* **Araçlar:** RStudio
-* **Kavramlar:** Kestirimci Bakım (Predictive Maintenance), İstatistiksel Veri Analizi, Zaman Serisi, Doğrusal Regresyon, Rastgele Örneklem.
+
+- **Programlama dili:** R
+- **Geliştirme ortamı:** RStudio
+- **Yöntemler:** Betimsel analiz, Q-Q grafikleri, Shapiro-Wilk testi ve doğrusal regresyon
