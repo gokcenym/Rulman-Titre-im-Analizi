@@ -1,30 +1,32 @@
-#1. Veri Yükleme (Sağlam ve Bozuk veriyi ayrı ayrı yüklüyoruz)
+# 1. Veri Yükleme
+# Not: features_good_named.csv ve features_fault_named.csv dosyalari R ile ayni dizinde olmalidir.
 veri_saglam <- read.csv("features_good_named.csv")
 veri_bozuk <- read.csv("features_fault_named.csv")
 
-#2. Shapiro-Wilk Normallik Testi (Sağlam veri üzerinden)
-shapiro.test(veri_saglam$B1_rms)
+# 2. Shapiro-Wilk Normallik Testi 
+# Büyük veri seti R'i kilitlememesi icin 5000'lik rastgele örneklem cekilerek test edilmistir.
+shapiro.test(sample(veri_saglam$B1__rms, 5000))
 
-#3. Sağlam Rulman Q-Q Plot Grafiği
+# 3. Saglam Rulman Q-Q Plot Grafigi
 png("saglam_rulman_qq.png", width = 800, height = 600)
-qqnorm(veri_saglam$B1_rms, main = "Sağlam Rulman Normallik Grafigi (Q-Q Plot)")
-qqline(veri_saglam$B1_rms, col = "red", lwd = 2)
+qqnorm(veri_saglam$B1__rms, main = "Saglam Rulman Normallik Grafigi (Q-Q Plot)")
+qqline(veri_saglam$B1__rms, col = "red", lwd = 2)
 dev.off()
 
-#4. Bozuk Rulman Q-Q Plot Grafiği
+# 4. Bozuk Rulman Q-Q Plot Grafigi
 png("bozuk_rulman_qq.png", width = 800, height = 600)
-qqnorm(veri_bozuk$B1_rms, main = "Bozuk Rulman RMS Q-Q Plot", col = "blue")
-qqline(veri_bozuk$B1_rms, col = "red", lwd=2)
+qqnorm(veri_bozuk$B1__rms, main = "Bozuk Rulman RMS Q-Q Plot", col = "blue")
+qqline(veri_bozuk$B1__rms, col = "red", lwd=2)
 dev.off()
 
-#5. Zamana Bağlı Doğrusal Regresyon Modeli (Bozuk veri üzerinden)
+# 5. Zamana Bagli Dogrusal Regresyon Modeli
 veri_bozuk$zaman <- 1:nrow(veri_bozuk)
-model <- lm(B1_rms ~ zaman, data = veri_bozuk)
+model <- lm(B1__rms ~ zaman, data = veri_bozuk)
 summary(model)
 
-#6. Zaman Serisi ve Regresyon Trend Grafiği
+# 6. Zaman Serisi ve Regresyon Trend Grafigi
 indeks <- seq(1, nrow(veri_bozuk), by = 50)
 png("regresyon_trendi.png", width = 800, height = 600)
-plot(veri_bozuk$zaman[indeks], veri_bozuk$B1_rms[indeks], type = "l", col = "darkgrey", xlab = "Zaman (Adim)", ylab = "Titresim Siddeti (B1 RMS)", main = "Rulman Zaman Serisi ve Regresyon Trendi")
+plot(veri_bozuk$zaman[indeks], veri_bozuk$B1__rms[indeks], type = "l", col = "darkgrey", xlab = "Zaman (Adim)", ylab = "Titresim Siddeti (B1 RMS)", main = "Rulman Zaman Serisi ve Regresyon Trendi")
 abline(model, col = "red", lwd=2)
 dev.off()
