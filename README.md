@@ -10,7 +10,7 @@ Bu çalışma, rulman verisi üzerinde yapılan bir istatistiksel analiz örneğ
 
 - **Veri kaynağı:** NASA Bearing Dataset.
 - **Kullanılan değişken:** `B1__rms` (1. rulmanın RMS değeri).
-- **Girdi dosyaları:** Kodun çalışması için `features_good_named.csv` ve `features_fault_named.csv` dosyaları R betiğiyle aynı dizinde bulunmalıdır. Veri dosyaları depoda yer almıyorsa, bu dosyaların hangi kaynaktan ve hangi adımlarla elde edildiği ayrıca açıklanmalıdır.
+- **Girdi dosyaları:** Kodun çalışması için `good_sample.csv` ve `fault_sample.csv` dosyaları R betiğiyle aynı dizinde bulunmalıdır. Veri dosyaları depoda yer almıyorsa, bu dosyaların hangi kaynaktan ve hangi adımlarla elde edildiği ayrıca açıklanmalıdır.
 - **Örnekleme:** Sağlam rulman verisinin normallik testi için 5.000 gözlem rastgele seçilmiştir. Rastgele örneklemin tekrarlanabilir olması için analiz öncesinde sabit bir tohum değeri belirlenmesi önerilir.
 
 ## Metodoloji ve İstatistiksel Analiz
@@ -25,7 +25,7 @@ Shapiro-Wilk testi, verinin normal dağılımla uyumunu değerlendirmek için ku
 
 Arızalı rulman verisindeki `B1__rms` değerinin satır sırasına göre değişimi doğrusal regresyonla incelenmiştir. Modelde satır sırası zaman göstergesi olarak kullanılmıştır.
 
-Analiz çıktısında zaman göstergesi ile RMS değeri arasında pozitif yönlü ve istatistiksel olarak anlamlı bir ilişki raporlanmıştır (`p < 2e-16`). Bu sonuç, incelenen veri içindeki doğrusal eğilimi gösterir; tek başına gelecekteki arıza zamanını veya bakım ihtiyacını tahmin ettiği anlamına gelmez. Ölçümlerin zaman sırasına bağlı olabileceği için regresyon sonuçları bu sınırlama dikkate alınarak yorumlanmalıdır.
+Analiz çıktısında tam verilerden elde edilen zaman göstergesi ile RMS değeri arasında pozitif yönlü ve istatistiksel olarak anlamlı bir ilişki raporlanmıştır (`p < 2e-16`). Bu sonuç, incelenen veri içindeki doğrusal eğilimi gösterir; tek başına gelecekteki arıza zamanını veya bakım ihtiyacını tahmin ettiği anlamına gelmez. Ölçümlerin zaman sırasına bağlı olabileceği için regresyon sonuçları bu sınırlama dikkate alınarak yorumlanmalıdır.
 
 ## Proje Çıktıları
 
