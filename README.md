@@ -29,7 +29,7 @@ Analiz çıktısında zaman göstergesi ile RMS değeri arasında pozitif yönl�
 
 ## Proje Çıktıları
 
-Depoda bulunan grafikler:
+**Depoda bulunan grafikler:**
 Depoda bulunan grafikler, tam veri dosyalarıyla yapılan önceki analizden elde edilmiştir. Kodun denenebilmesi için sağlam ve arızalı veri dosyalarının ilk 100 satırını içeren küçük örnek CSV’ler de eklenmiştir. Örnek CSV’lerle kod yeniden çalıştırıldığında grafikler ve analiz sonuçları tam veriyle elde edilenlerden farklı olabilir.
 
 - `saglam_rulman_qq.png`: Sağlam rulman RMS değerlerinin Q-Q grafiği.
