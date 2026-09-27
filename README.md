@@ -37,7 +37,7 @@ Depoda bulunan grafikler:
 
  ## Analiz Sınırları ve Gelecek Çalışmalar (Limitations & Future Work)
 * **Değişken Sınırlandırması:** Bu mini araştırma ve keşifsel çalışmada (EDA) temel trendi görmek adına yalnızca RMS (Root Mean Square) değeri baz alınmıştır. Gelecek aşamalarda verisetindeki Kurtosis, Skewness ve Peak-to-Peak gibi diğer titreşim metriklerinin de sürece dahil edilmesi planlanmaktadır.
-* **Zaman Serisi Dinamikleri:** İki durum arasındaki farkı göstermek için doğrusal regresyon kullanılmıştır. Ancak sensör verilerindeki zaman bağımlılığı (otokorelasyon) göz önüne alındığında, ilerleyen çalışmalarda ARIMA veya makine öğrenmesi tabanlı kestirimci modellerin (Predictive Modeling) test edilmesi hedeflenmektedir.
+Zaman Serisi Dinamikleri: Arızalı rulmana ait RMS değerlerinin satır sırasına göre eğilimini incelemek için doğrusal regresyon kullanılmıştır. Sensör ölçümlerinde zaman bağımlılığı ve otokorelasyon bulunabileceğinden, regresyon sonuçları bu sınırlama dikkate alınarak yorumlanmalıdır. Gelecek çalışmalarda, zaman bilgisi ve veri yapısı uygun olduğunda zaman serisi veya kestirim modellerinin denenmesi planlanmaktadır.
 
 ## Kullanılan Teknolojiler
 
