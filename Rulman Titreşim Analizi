@@ -1,7 +1,7 @@
 # 1. Veri Yükleme
-# Not: features_good_named.csv ve features_fault_named.csv dosyalari R ile ayni dizinde olmalidir.
-veri_saglam <- read.csv("features_good_named.csv")
-veri_bozuk <- read.csv("features_fault_named.csv")
+# Veri Yükleme (Küçük örneklem dosyaları)
+veri_saglam <- read.csv("good_sample.csv")
+veri_bozuk <- read.csv("fault_sample.csv")
 
 # 2. Shapiro-Wilk Normallik Testi 
 # Büyük veri seti R'i kilitlememesi icin 5000'lik rastgele örneklem cekilerek test edilmistir.
