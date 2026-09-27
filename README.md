@@ -35,6 +35,10 @@ Depoda bulunan grafikler:
 - `bozuk_rulman_qq.png`: Arızalı rulman RMS değerlerinin Q-Q grafiği.
 - `regresyon_trendi.png`: Arızalı rulman RMS değerlerinin satır sırasına göre değişimi ve doğrusal regresyon çizgisi.
 
+ ## Analiz Sınırları ve Gelecek Çalışmalar (Limitations & Future Work)
+* **Değişken Sınırlandırması:** Bu mini araştırma ve keşifsel çalışmada (EDA) temel trendi görmek adına yalnızca RMS (Root Mean Square) değeri baz alınmıştır. Gelecek aşamalarda verisetindeki Kurtosis, Skewness ve Peak-to-Peak gibi diğer titreşim metriklerinin de sürece dahil edilmesi planlanmaktadır.
+* **Zaman Serisi Dinamikleri:** İki durum arasındaki farkı göstermek için doğrusal regresyon kullanılmıştır. Ancak sensör verilerindeki zaman bağımlılığı (otokorelasyon) göz önüne alındığında, ilerleyen çalışmalarda ARIMA veya makine öğrenmesi tabanlı kestirimci modellerin (Predictive Modeling) test edilmesi hedeflenmektedir.
+
 ## Kullanılan Teknolojiler
 
 - **Programlama dili:** R
