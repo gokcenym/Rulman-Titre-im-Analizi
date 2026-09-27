@@ -4,8 +4,9 @@ veri_saglam <- read.csv("good_sample.csv")
 veri_bozuk <- read.csv("fault_sample.csv")
 
 # 2. Shapiro-Wilk Normallik Testi 
-# Büyük veri seti R'i kilitlememesi icin 5000'lik rastgele örneklem cekilerek test edilmistir.
-shapiro.test(sample(veri_saglam$B1__rms, 5000))
+# Verideki satır sayısı 5000'den küçükse tamamını, büyükse 5000 tanesini örnekler
+n_boyut <- min(5000, nrow(veri_saglam))
+shapiro.test(sample(veri_saglam$B1__rms, n_boyut))
 
 # 3. Saglam Rulman Q-Q Plot Grafigi
 png("saglam_rulman_qq.png", width = 800, height = 600)
